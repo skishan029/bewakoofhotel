@@ -16,10 +16,11 @@
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-title">{{ $title }}</h5>
-                            <div class="card-tools">
-                                <a href="{{ route('admin.productmaster.product.create') }}"
-                                    class="btn btn-primary btn-sm btn-flat"><i class="fas fa-plus-circle"></i> Create</a>
-                            </div>
+                            @if (Auth::guard('admin')->user()->user_type == '1')
+                                <div class="card-tools">
+                                    <a href="{{ route('admin.productmaster.product.create') }}" class="btn btn-primary btn-sm btn-flat"><i class="fas fa-plus-circle"></i> Create</a>
+                                </div>
+                            @endif
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

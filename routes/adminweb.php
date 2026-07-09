@@ -88,7 +88,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::match(['get', 'post'], 'edit/{id}', [\App\Http\Controllers\Admin\ProductMaster\CategoryController::class, 'edit'])->name('edit')->whereNumber('id');
             });
 
-            Route::prefix('product')->name('product.')->middleware('admin.isaccessmenu:1')->group(function () {
+            Route::prefix('product')->name('product.')->middleware('admin.isaccessmenu:2')->group(function () {
                 Route::get('/', [\App\Http\Controllers\Admin\ProductMaster\ProductController::class, 'index'])->name('index');
                 Route::match(['get', 'post'], 'create', [\App\Http\Controllers\Admin\ProductMaster\ProductController::class, 'create'])->name('create');
                 Route::match(['get', 'post'], 'edit/{id}', [\App\Http\Controllers\Admin\ProductMaster\ProductController::class, 'edit'])->name('edit');

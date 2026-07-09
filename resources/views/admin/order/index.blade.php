@@ -110,11 +110,13 @@
                                                 <td>{{ \App\Helper\Helper::paymentOption($order->payment_option) }}</td>
                                                 <td>{{ number_format($order->grand_total, '2', '.', '') }}</td>
                                                 <td width="12%">
-                                                    {{-- @if (Auth::guard('admin')->user()->user_type == '1') --}}
-                                                        <a href="{{ route('admin.order.edit', $order->id) }}"
-                                                            class="btn btn-primary btn-sm btn-flat"><i
-                                                                class="fas fa-edit"></i></a>
-                                                    {{-- @endif --}}
+                                                    @if (Auth::guard('admin')->user()->user_type == '1')
+                                                        <a href="{{ route('admin.order.edit', $order->id) }}" class="btn btn-primary btn-sm btn-flat"><i class="fas fa-edit"></i></a>
+                                                    @else
+                                                        @if ($order->status == '1')
+                                                            <a href="{{ route('admin.order.edit', $order->id) }}" class="btn btn-primary btn-sm btn-flat"><i class="fas fa-edit"></i></a>
+                                                        @endif
+                                                    @endif
 
 
                                                     <a href="{{ route('admin.order.details', $order->order_key) }}"
