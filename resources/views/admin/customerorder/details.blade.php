@@ -187,7 +187,11 @@
                                     <tr>
                                         <td colspan="4"><strong>Delivery Charge</strong></td>
                                         <td class="text-right">
-                                            <strong>Free</strong>
+                                            @if ($order->delivery_charge > 0)
+                                                <strong>&#8377;{{ number_format($order->delivery_charge, 2) }}</strong>
+                                            @else
+                                                <strong>Free</strong>
+                                            @endif
                                         </td>
                                     </tr>
                                     <tr>

@@ -2,6 +2,9 @@
 
 namespace App\Helper;
 
+use Illuminate\Support\Facades\Auth;
+use Gloudemans\Shoppingcart\Facades\Cart;
+
 class Helper
 {
     public static function companyEmail()
@@ -358,5 +361,11 @@ class Helper
                 'active' => $isActive && $status == 'cancelled',
             ],
         ];
+    }
+
+    public static function getShippingCharge()
+    {
+        $subtotal = Cart::instance(Auth::guard('customer')->user()->id)->subtotalFloat();
+        return $subtotal <= 300 ? 50 : 0;
     }
 }

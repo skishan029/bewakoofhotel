@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Helper\Helper;
 
 class OrderController extends Controller
 {
@@ -72,8 +73,8 @@ class OrderController extends Controller
                             'customer_id'       => $loggedInUser->id,
                             'sub_total'         => $subTotal,
                             'discount'          => 0,
-                            'delivery_charge'   => 0,
-                            'grand_total'       => $subTotal,
+                            'delivery_charge'   => Helper::getShippingCharge(),
+                            'grand_total'       => ($subTotal - 0) + Helper::getShippingCharge(),
                             'order_date'        => date('Y-m-d'),
                             'address'           => $request->address,
                             'landmark'          => $request->landmark,
@@ -153,17 +154,21 @@ class OrderController extends Controller
                         }
 
                         $order->sub_total       = $subTotal;
-                        $order->delivery_charge = 0;
-                        $order->grand_total     = $order->sub_total - $order->discount;
+                        $order->delivery_charge = Helper::getShippingCharge();
+                        $order->grand_total     = ($order->sub_total - $order->discount) + $order->delivery_charge;
                         $order->save();
 
                         Cart::instance($loggedInUser->id)->destroy();
 
                         return $order;
                     });
-					
-					\App\Services\TwilioService::makeCall();
-					
+
+                    try {
+                        \App\Services\TwilioService::makeCall();
+                    } catch (\Exception $e) {
+                        Log::error("Customer::OrderController::create() - TwilioService::makeCall() - " . $e->getMessage());
+                    }
+
                     return redirect()->route('customer.order.success', $order->order_key);
                 }
             } catch (\Exception $e) {
@@ -178,12 +183,12 @@ class OrderController extends Controller
             return redirect()->route('customer.product.index');
         }
         $user =  Customer::find(Auth::guard('customer')->user()->id);
-        
+
         $subTotal = Cart::instance(Auth::guard('customer')->user()->id)->subtotalFloat();
         $parentRegions = \App\Models\Region::whereNull('parent_id')->has('subregion')->get(['id', 'name']);
         $subRegions = \App\Models\Region::where('parent_id', $user->region_id)->whereNotNull('parent_id')->get(['id', 'name']);
         $title = 'Checkout';
-        return view('customer.checkout.index', compact('cart', 'subTotal','user','parentRegions','subRegions', 'title'));
+        return view('customer.checkout.index', compact('cart', 'subTotal', 'user', 'parentRegions', 'subRegions', 'title'));
     }
 
     public function success($key)
