@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Models\CategoryProduct;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -23,15 +24,17 @@ class ProductController extends Controller
                 ->addColumn('action', function ($row) {
 
                     $btn = '<div class="btn-group">';
-
-                    if ($row->trashed()) {
-                        $btn .= \App\Helper\Helper::commonDisableEditButton();
-                        $btn .= \App\Helper\Helper::commonDeleteRestoreButton($row->id, '1', '2');
-                    } else {
-                        $url = route('admin.productmaster.product.edit', ['id' => $row->id]);
-                        $btn .= \App\Helper\Helper::commonEditButton($url);
-                        $btn .= \App\Helper\Helper::commonDeleteRestoreButton($row->id, '2', '1');
-
+                    if (Auth::guard('admin')->user()->user_type == '1') {
+                        if ($row->trashed()) {
+                            $btn .= \App\Helper\Helper::commonDisableEditButton();
+                            $btn .= \App\Helper\Helper::commonDeleteRestoreButton($row->id, '1', '2');
+                        } else {
+                            $url = route('admin.productmaster.product.edit', ['id' => $row->id]);
+                            $btn .= \App\Helper\Helper::commonEditButton($url);
+                            $btn .= \App\Helper\Helper::commonDeleteRestoreButton($row->id, '2', '1');
+                        }
+                    }
+                    if (!$row->trashed()) {
                         $btn .= '
                             <div class="ml-2 custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
                                 <input type="checkbox" class="custom-control-input" id="customSwitch_' . $row->id . '" ' . ($row->is_active ? 'checked' : '') . ' onchange="changeStatus(' . $row->id . ')">

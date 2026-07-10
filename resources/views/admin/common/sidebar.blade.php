@@ -192,6 +192,8 @@
                     <p>Product Category</p>
                 </a>
             </li>
+        @endif
+        @if (in_array('1', $accessMenu) || in_array('2', $accessMenu))
             <li class="nav-item">
                 <a href="{{ route('admin.productmaster.product.index') }}"
                     class="nav-link {{ request()->routeIs('admin.productmaster.product.*') ? 'active' : '' }}">

@@ -39,7 +39,7 @@
 				<p>Frontend Setting<i class="fas fa-angle-right right"></i></p>
 			</a>
 			<ul class="nav nav-treeview">
-			    
+
 				@if (in_array('6', $accessMenu))
                     <li class="nav-item">
                         <a href="{{ route('admin.frontend.slider.upload') }}" class="nav-link {{ request()->routeIs('admin.frontend.slider.*') ? 'active' : '' }}">
@@ -48,7 +48,7 @@
                         </a>
                     </li>
                 @endif
-                
+
                 @if (in_array('7', $accessMenu))
                     <li class="nav-item">
                         <a href="{{ route('admin.frontend.fooditem.upload') }}" class="nav-link {{ request()->routeIs('admin.frontend.fooditem.*') ? 'active' : '' }}">
@@ -57,7 +57,7 @@
                         </a>
                     </li>
                 @endif
-                
+
                 @if (in_array('8', $accessMenu))
                     <li class="nav-item">
                         <a href="{{ route('admin.frontend.gallery.upload') }}" class="nav-link {{ request()->routeIs('admin.frontend.gallery.*') ? 'active' : '' }}">
@@ -66,7 +66,7 @@
                         </a>
                     </li>
                 @endif
-                
+
                 @if (in_array('9', $accessMenu))
                     <li class="nav-item">
                         <a href="{{ route('admin.frontend.frequentlyaskedquestion.create') }}" class="nav-link {{ request()->routeIs('admin.frontend.frequentlyaskedquestion.*') ? 'active' : '' }}">
@@ -75,7 +75,7 @@
                         </a>
                     </li>
                 @endif
-                
+
                 @if (in_array('10', $accessMenu))
                     <li class="nav-item">
                         <a href="{{ route('admin.frontend.testimonial.create') }}" class="nav-link {{ request()->routeIs('admin.frontend.testimonial.*') ? 'active' : '' }}">
@@ -84,7 +84,7 @@
                         </a>
                     </li>
                 @endif
-                
+
                 @if (in_array('11', $accessMenu))
                     <li class="nav-item">
                         <a href="{{ route('admin.frontend.setting') }}" class="nav-link {{ request()->routeIs('admin.frontend.setting') ? 'active' : '' }}">
@@ -112,13 +112,13 @@
                         <p>Contact Us</p>
                     </a>
                 </li>
-				
+
 			</ul>
-            
+
 		</li>
 		@endif
 
-        
+
 
         @if (in_array('4', $accessMenu))
             <li class="nav-item {{ request()->routeIs('admin.profile.*') ? 'menu-open' : '' }}">
@@ -145,7 +145,7 @@
             </li>
         @endif
 
-        
+
 
         @if (in_array('1', $accessMenu))
             <li class="nav-item">
@@ -155,7 +155,7 @@
                 </a>
             </li>
         @endif
-        
+
 
         @if (in_array('2', $accessMenu))
             <li class="nav-item">
@@ -165,7 +165,7 @@
                 </a>
             </li>
         @endif
-        
+
 
         @if (in_array('2', $accessMenu))
             @php
@@ -192,14 +192,14 @@
             </li>
         @endif
 
-        {{-- @if (in_array('1', $accessMenu) || in_array('2', $accessMenu)) --}} 
+        {{-- @if (in_array('1', $accessMenu) || in_array('2', $accessMenu)) --}}
         @if (in_array('1', $accessMenu))
             <li class="nav-item {{ request()->routeIs('admin.report.*') ? 'menu-open' : '' }}">
                 <a href="#" class="nav-link {{ request()->routeIs('admin.report.*') ? 'active' : '' }}"> <i class="fas fa-user-edit nav-icon"></i>
                     <p>Report <i class="fas fa-angle-left right"></i> </p>
                 </a>
                 <ul class="nav nav-treeview">
-                    
+
                     <li class="nav-item">
                         <a href="{{ route('admin.report.index') }}" class="nav-link {{ (request()->routeIs('admin.report.product') || request()->routeIs('admin.report.index')) ? 'active' : '' }}"> <i class="fas fa-long-arrow-alt-right nav-icon "></i>
                             <p>Order</p>
@@ -220,9 +220,9 @@
                 </ul>
             </li>
         @endif
-        
 
-        
+
+
         {{-- <li class="nav-item">
             <a href="{{ route('admin.report.index') }}" class="nav-link {{ request()->routeIs('admin.report.index') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-file-pdf"></i>
