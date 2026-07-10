@@ -1,4 +1,4 @@
-@extends('admin.common.layout')
+    @extends('admin.common.layout')
 @section('title', $title)
 @section('module_title', 'Invoice')
 
@@ -64,7 +64,7 @@
                                             @endif
                                             <small>{{ $product->product_name }} - Full</small>
                                         </h6>
-                                        
+
                                     </div>-->
                                     <div class="col-6">
                                         <div class="input-group">
@@ -123,7 +123,7 @@
 
                                     <div class="row">
                                         <div class="col-6" style="background: url('{{ Storage::url($product->half_photo) }}');background-repeat: no-repeat;background-position: left;background-size: cover;">
-                                        </div>                                        
+                                        </div>
                                         {{-- <div class="col-5">
                                             <div class="input-group input-group-sm">
                                                 <div class="input-group-prepend">
@@ -218,12 +218,12 @@
                                 </div>
 
                                 <div class="col-md-4">
-                                    <div class="form-group">  
+                                    <div class="form-group">
                                         <label for="whatsapp_number">Whatsapp Number </label>
                                         <input type="text" name="whatsapp_number" id="whatsapp_number" class="form-control rounded-0" onkeypress="return isNumber(event)" onkeypress="return isNumber(event)" minlength="10" maxlength="10" value="{{ $productOrder->whatsapp_number }}">
                                     </div>
                                 </div>
-                                
+
 
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -231,7 +231,7 @@
                                         <input id="discount" class="form-control rounded-0" type="number" name="discount" onclick="firstDeci()" onkeypress="return isNumberKey(this, event);" onkeyup="calculateGrandTotal()" onchange="calculateGrandTotal()" min="1" value="{{ $productOrder->discount }}">
                                     </div>
                                 </div>
-                
+
                             </div>
                         </div>
                     </div>
@@ -241,7 +241,7 @@
                         <div class="card-body p-0">
                             <table class="table table-sm">
                                 <tbody id="cartproductlist"></tbody>
-                                
+
                             </table>
                             <table class="table table-sm">
                                 <tbody>
@@ -256,7 +256,7 @@
                                         <td style="border-top: none;" colspan="3">Discount</td>
                                         <td class="text-right text-danger" style="border-top: none;">- &#8377;<span id="discount_span">0.00</span></td>
                                     </tr>
-                                    
+
                                     <tr>
                                         <th style="border-top: none;" colspan="3">Grand Total</th>
                                         <th class="text-right" style="border-top: none;">&#8377;<span id="grand_total_span">0.00</span></th>
