@@ -38,7 +38,7 @@
             overflow: hidden;
             border-radius: 10px;
         }
-        
+
         .video-wrapper iframe {
             position: absolute;
             top: 0;
@@ -51,14 +51,14 @@
             font-size: 16px;
             color: #fff;
         }
-        
+
         .login-link {
             color: #c19d60;
             font-weight: 600;
             text-decoration: none;
             transition: 0.3s;
         }
-        
+
         .login-link:hover {
             color: #000;
             text-decoration: underline;
@@ -75,7 +75,7 @@
             background: #bf9444;
             border-radius: 8px;
         }
-        
+
     </style>
     @stack('css')
 </head>
@@ -203,7 +203,7 @@
                                 <ul>
                                     <li><a href="{{ route('home') }}">Home</a></li>
                                     <li><a href="{{ route('about') }}">About</a></li>
-                                    <!-- <li><a href="{{ route('menu') }}">Menu</a></li> -->
+                                    {{-- <li><a href="{{ route('menu') }}">Menu</a></li> --}}
                                     <li><a href="{{ route('customer.category') }}">Explore Menu</a></li>
                                     @if (Auth::guard('customer')->check())
                                         <li><a href="{{ route('customer.order.index') }}">My Order</a></li>
