@@ -54,7 +54,7 @@ Route::get('/install', function () {
 
 Route::match(['get', 'post'], '/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('about', [\App\Http\Controllers\HomeController::class, 'about'])->name('about');
-Route::get('menu', [\App\Http\Controllers\HomeController::class, 'menu'])->name('menu');
+// Route::get('menu', [\App\Http\Controllers\HomeController::class, 'menu'])->name('menu');
 Route::match(['get', 'post'], 'contact', [\App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 Route::match(['get', 'post'], 'testimonial-enquiry', [\App\Http\Controllers\HomeController::class, 'testimonialEnquiry'])->name('testimonialenquiry');
 Route::get('faq', [\App\Http\Controllers\HomeController::class, 'faq'])->name('faq');

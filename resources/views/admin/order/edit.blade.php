@@ -1,4 +1,4 @@
-    @extends('admin.common.layout')
+@extends('admin.common.layout')
 @section('title', $title)
 @section('module_title', 'Invoice')
 
