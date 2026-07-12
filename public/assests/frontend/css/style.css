@@ -917,6 +917,8 @@ header.style-2 .menu-close-btn i {
 }
 
 .primary-btn3 {
+  font-size: 1.125rem;
+  font-weight: 500;
   color: var(--primary-color1);
   border-radius: 10px 0;
   border: 1px solid;
